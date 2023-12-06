@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("welcome to backend")
+    res.send("welcome to backend yogesh")
 })
 
 app.use("/api/v2", router)

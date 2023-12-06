@@ -4,7 +4,7 @@ import Jwt from 'jsonwebtoken'
 
 export const Register = async (req, res) => {
     try {
-        const {name, email, password} = req.body;
+        const {name, email, password} = req.body.userData;
 
         if(!name || !email || !password) return res.status(401).json({succes: false, message: "All fields are mandatory"})
         
@@ -19,7 +19,7 @@ export const Register = async (req, res) => {
 
             await user.save();
 
-            return res.status(200).json({succes: true, message: "Register successful"})
+            return res.status(200).json({succes: true, message: "Account created successful"})
     } catch (error) {
         return res.status(500).json({success: false, message: error})
     }
@@ -27,7 +27,7 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password } = req.body.userData;
         if(!email || !password) return res.status(401).json({succes: false, message: "All fields are mandatory"})
 
         const user = await UserModal.findOne({ email: email});
